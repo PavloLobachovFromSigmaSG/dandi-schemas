@@ -1,0 +1,138 @@
+[
+  {
+    "type": "record",
+    "name": "Answer",
+    "namespace": "com.dandiinc.avro",
+    "fields": [
+      {
+        "name": "sessionId",
+        "type": "string",
+        "doc": ""
+      },
+      {
+        "name": "enterpriseId",
+        "type": "string",
+        "doc": ""
+      },
+      {
+        "name": "audienceId",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null,
+        "doc": ""
+      },
+      {
+        "name": "employeeId",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null,
+        "doc": ""
+      },
+      {
+        "name": "globalSurveyId",
+        "type": "string"
+      },
+      {
+        "name": "surveyId",
+        "type": "string"
+      },
+      {
+        "name": "surveyScore",
+        "type": "float"
+      },
+      {
+        "name": "globalCategoryId",
+        "type": "string"
+      },
+      {
+        "name": "categoryId",
+        "type": "string"
+      },
+      {
+        "name": "categoryScore",
+        "type": "float"
+      },
+      {
+        "name": "globalQuestionId",
+        "type": "string"
+      },
+      {
+        "name": "questionId",
+        "type": "string"
+      },
+      {
+        "name": "questionScore",
+        "type": "float"
+      },
+      {
+        "name": "questionFieldName",
+        "type": "string"
+      },
+      {
+        "name": "singularAnswerValue",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null,
+        "doc": ""
+      },
+      {
+        "name": "multiAnswerValues",
+        "type": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default": []
+      },
+      {
+        "name": "answerScore",
+        "type": "float"
+      },
+      {
+        "name": "answerValueType",
+        "type": "string"
+      },
+      {
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "name": "privacy",
+        "type": "string"
+      },
+      {
+        "name": "endDateUtc",
+        "type": "long"
+      },
+      {
+        "name": "eventTimeUtc",
+        "type": "long"
+      },
+      {
+        "name": "eventTimeLocal",
+        "type": "long"
+      },
+      {
+        "name": "page",
+        "type": "int"
+      },
+      {
+        "name": "meta",
+        "type": {
+          "type": "map",
+          "values": {
+            "type": "string"
+          }
+        },
+        "default": {}
+      }
+    ]
+  }
+]

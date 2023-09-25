@@ -1,0 +1,248 @@
+[
+  {
+    "type": "record",
+    "name": "Template",
+    "namespace": "com.dandiinc.avro",
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "doc": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "doc": ""
+      },
+      {
+        "name": "globalSurveyId",
+        "type": "string",
+        "doc": ""
+      },
+      {
+        "name": "surveyId",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null,
+        "doc": ""
+      },
+      {
+        "name": "enterpriseId",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null,
+        "doc": ""
+      },
+      {
+        "name": "score",
+        "type": [
+          "null",
+          "float"
+        ],
+        "default": null,
+        "doc": ""
+      },
+      {
+        "name": "isPublished",
+        "type": "boolean"
+      },
+      {
+        "name": "isPrivate",
+        "type": "boolean"
+      },
+      {
+        "name": "categories",
+        "type": {
+          "type": "array",
+          "items": {
+            "type": "record",
+            "name": "Category",
+            "namespace": "com.dandiinc.avro",
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "doc": ""
+              },
+              {
+                "name": "description",
+                "type": "string",
+                "doc": ""
+              },
+              {
+                "name": "globalCategoryId",
+                "type": "string",
+                "doc": ""
+              },
+              {
+                "name": "categoryId",
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "default": null,
+                "doc": ""
+              },
+              {
+                "name": "enterpriseId",
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "default": null,
+                "doc": ""
+              },
+              {
+                "name": "score",
+                "type": [
+                  "null",
+                  "float"
+                ],
+                "default": null,
+                "doc": ""
+              },
+              {
+                "name": "questions",
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "record",
+                    "name": "Question",
+                    "namespace": "com.dandiinc.avro",
+                    "fields": [
+                      {
+                        "name": "title",
+                        "type": "string",
+                        "doc": ""
+                      },
+                      {
+                        "name": "fieldName",
+                        "type": "string",
+                        "doc": ""
+                      },
+                      {
+                        "name": "valueType",
+                        "type": "string",
+                        "doc": ""
+                      },
+                      {
+                        "name": "values",
+                        "type": {
+                          "type": "array",
+                          "items": {
+                            "type": "record",
+                            "name": "Value",
+                            "namespace": "com.dandiinc.avro",
+                            "fields": [
+                              {
+                                "name": "value",
+                                "type": "string",
+                                "doc": ""
+                              },
+                              {
+                                "name": "score",
+                                "type": "float",
+                                "doc": ""
+                              }
+                            ]
+                          }
+                        },
+                        "default": []
+                      },
+                      {
+                        "name": "globalQuestionId",
+                        "type": "string",
+                        "doc": ""
+                      },
+                      {
+                        "name": "questionId",
+                        "type": [
+                          "null",
+                          "string"
+                        ],
+                        "default": null,
+                        "doc": ""
+                      },
+                      {
+                        "name": "globalCategoryId",
+                        "type": "string",
+                        "doc": ""
+                      },
+                      {
+                        "name": "categoryId",
+                        "type": [
+                          "null",
+                          "string"
+                        ],
+                        "default": null,
+                        "doc": ""
+                      },
+                      {
+                        "name": "enterpriseId",
+                        "type": [
+                          "null",
+                          "string"
+                        ],
+                        "default": null,
+                        "doc": ""
+                      },
+                      {
+                        "name": "score",
+                        "type": [
+                          "null",
+                          "float"
+                        ],
+                        "default": null,
+                        "doc": ""
+                      },
+                      {
+                        "name": "isPrivate",
+                        "type": "boolean"
+                      },
+                      {
+                        "name": "meta",
+                        "type": {
+                          "type": "map",
+                          "values": {
+                            "type": "string"
+                          }
+                        },
+                        "default": {}
+                      }
+                    ]
+                  }
+                },
+                "default": []
+              },
+              {
+                "name": "meta",
+                "type": {
+                  "type": "map",
+                  "values": {
+                    "type": "string"
+                  }
+                },
+                "default": {}
+              }
+            ]
+          }
+        },
+        "default": []
+      },
+      {
+        "name": "meta",
+        "type": {
+          "type": "map",
+          "values": {
+            "type": "string"
+          }
+        },
+        "default": {}
+      }
+    ]
+  }
+]

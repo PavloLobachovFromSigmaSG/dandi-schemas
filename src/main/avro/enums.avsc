@@ -1,0 +1,31 @@
+[
+  {
+    "type": "enum",
+    "name": "PrivacyType",
+    "namespace": "com.dandiinc.avro",
+    "symbols": [
+      "ANONYMOUS",
+      "DANDI_ONLY",
+      "DANDI_AND_CLIENT"
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "ValueType",
+    "namespace": "com.dandiinc.avro",
+    "symbols": [
+      "RADIOBUTTON",
+      "CHECKBOX"
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "StorageType",
+    "namespace": "com.dandiinc.avro",
+    "symbols": [
+      "LONDON",
+      "FRANKFURT",
+      "IOWA"
+    ]
+  }
+]

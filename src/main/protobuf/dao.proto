@@ -1,0 +1,208 @@
+syntax = "proto3";
+
+package com.dandiinc.collection.content.management;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+enum ValueType {
+  RADIOBUTTON = 0;
+  CHECKBOX = 1;
+}
+
+enum AudienceType {
+  STATIC = 0;
+  DYNAMIC = 1;
+}
+
+enum CadenceType {
+  ONE_TIME = 0;
+  EVERY_N_DAYS = 1;
+  WEEKLY = 2;
+  MONTHLY = 3;
+  QUARTERLY = 4;
+  YEARLY = 5;
+}
+
+enum PrivacyType {
+  ANONYMOUS = 0;
+  DANDI_ONLY = 1;
+  DANDI_AND_CLIENT = 2;
+}
+
+enum StorageType {
+  LONDON = 0;
+  FRANKFURT = 1;
+  IOWA = 2;
+}
+
+enum Status {
+  STARTED = 0;
+  COMPLETED = 1;
+  FAILED = 2;
+}
+
+message SyncStatus {
+  Status status = 1;
+  google.protobuf.StringValue error = 2;
+  google.protobuf.Timestamp startedAt = 3;
+  google.protobuf.Timestamp stoppedAt = 4;
+}
+
+message Cadence {
+  CadenceType type = 1;
+  google.protobuf.Int32Value runEachNDays = 2;
+}
+
+message Privacy {
+  PrivacyType type = 1;
+}
+
+message Storage {
+  StorageType type = 1;
+}
+
+message SurveySnapshot {
+  string title = 1;
+  string description = 2;
+  string globalSurveyId = 3;
+  google.protobuf.Timestamp startDate = 4;
+  google.protobuf.Timestamp endDate = 5;
+  google.protobuf.Timestamp publishDate = 6;
+  google.protobuf.StringValue audienceId = 7;
+  google.protobuf.StringValue emailMappingId = 8;
+  google.protobuf.StringValue link = 9; //TODO: change to Map, static link, dynamic link
+  google.protobuf.StringValue password = 10;
+  Cadence cadence = 11;
+  Privacy privacy = 12;
+  Storage storage = 13;
+  string surveyId = 14;
+  string enterpriseId = 15;
+  google.protobuf.FloatValue score = 16;
+  bool isPublished = 17;
+  bool isPrivate = 18;
+  repeated Category categories = 19;
+  Meta meta = 20;
+}
+
+message Email {
+  string employeeId = 1;
+  string email = 2;
+}
+
+message EmailMapping {
+  string enterpriseId = 1;
+  string emailMappingId = 2;
+  //GCS path to CSV file which should be uploaded into BigQuery table
+  string filePath = 3;
+  //BigQuery table name which will hold data for email mapping
+  string fullTableName = 4;
+  repeated Email emails = 5;
+  SyncStatus syncStatus = 6 [(scalapb.field).no_box = true];
+  Meta meta = 7;
+}
+
+message AudienceUser {
+  string employeeId = 1;
+  google.protobuf.StringValue fullName = 2;
+  google.protobuf.StringValue email = 3;
+}
+
+message OrPredicate {
+  string column = 1;
+  repeated string terms = 2;
+}
+
+message Criteria {
+  string dateColumn = 1;
+  string startDate = 2;
+  string endDate = 3;
+  repeated OrPredicate predicates = 4;
+}
+
+message Audience {
+  string audienceId = 1;
+  string enterpriseId = 2;
+  string title = 3;
+  string description = 4;
+  AudienceType type = 5;
+  //only for AudienceType.DYNAMIC
+  Criteria criteria = 6;
+  //only for AudienceType.STATIC
+  google.protobuf.StringValue filePath = 7;
+  //BigQuery table name which will hold data for audience
+  string fullTableName = 8;
+  int64 size = 9;
+  //changes based on responses to the survey.
+  // Percentage of total expected users to answer vs total answers
+  google.protobuf.FloatValue activePercentage = 10;
+  //show percentage of records are the same since last audience update
+  google.protobuf.FloatValue changePercentage = 11;
+  repeated AudienceUser users = 12;
+  SyncStatus syncStatus = 13 [(scalapb.field).no_box = true];
+  Meta meta = 14;
+}
+
+message SurveyTemplate {
+  string title = 1;
+  string description = 2;
+  string globalSurveyId = 3;
+  google.protobuf.StringValue surveyId = 4;
+  google.protobuf.StringValue enterpriseId = 5;
+  google.protobuf.FloatValue score = 6;
+  bool isPublished = 7;
+  bool isPrivate = 8;
+  repeated Category categories = 9;
+  Meta meta = 10;
+}
+
+message Category {
+  string title = 1;
+  string description = 2;
+  string globalCategoryId = 3;
+  google.protobuf.StringValue categoryId = 4;
+  google.protobuf.FloatValue score = 5;
+  google.protobuf.StringValue enterpriseId = 6;
+  // only relevant when saved within survey,
+  // when Category save on its own, questions should be empty
+  repeated Question questions = 7;
+  Meta meta = 8;
+}
+
+message Question {
+  string title = 1;
+  string fieldName = 2;
+  ValueType valueType = 3;
+  repeated Value values = 4;
+  string globalQuestionId = 5;
+  google.protobuf.StringValue questionId = 6;
+  string globalCategoryId = 7;
+  google.protobuf.StringValue categoryId = 8;
+  google.protobuf.FloatValue score = 9;
+  google.protobuf.StringValue enterpriseId = 10;
+  bool isPrivate = 11;
+  Meta meta = 12;
+}
+
+message Value {
+  string value = 1;
+  float score = 2;
+}
+
+message Meta {
+  string createdBy = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  repeated UiElements uiElements = 4;
+}
+
+message UiElements {
+  string key = 1;
+  string value = 2;
+}
+
+message TimeSeriesDataPoint {
+  google.protobuf.Timestamp timestamp = 1;
+  double value = 2;
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "type": "record",
+    "name": "Audience",
+    "namespace": "com.dandiinc.avro",
+    "fields": [
+      {
+        "name": "audienceId",
+        "type": "string"
+      },
+      {
+        "name": "enterpriseId",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "type",
+        "type": "string"
+      },
+      {
+        "name": "size",
+        "type": "long"
+      }
+    ]
+  }
+]

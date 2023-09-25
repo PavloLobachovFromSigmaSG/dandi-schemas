@@ -1,0 +1,46 @@
+[
+  {
+    "type": "record",
+    "name": "Failure",
+    "namespace": "com.dandiinc.avro",
+    "fields": [
+      {
+        "name": "pipelineStep",
+        "type": "string"
+      },
+      {
+        "name": "inputElement",
+        "type": "bytes"
+      },
+      {
+        "name": "eventAttributes",
+        "type": {
+          "type": "map",
+          "values": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "eventTime",
+        "type": "long"
+      },
+      {
+        "name": "exception",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "AttributeNames",
+    "namespace": "com.dandiinc.avro",
+    "symbols": [
+      "enterpriseId",
+      "sessionId",
+      "surveyId",
+      "privacyType",
+      "eventTimeUtc"
+    ]
+  }
+]
